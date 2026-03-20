@@ -76,6 +76,15 @@ src/com/peerconnect/ui/MainApplication.java
 * 📈 Advanced recommendation algorithm
 
 ---
+👥 Contributors
+
+ Adarsh Vijayan
+
+ Ananthu Prakash
+
+ Fidha Shaji
+
+ Angela M
 
 ## ⭐ Note
 
