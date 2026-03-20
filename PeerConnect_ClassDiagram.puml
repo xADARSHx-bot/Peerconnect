@@ -1,0 +1,115 @@
+@startuml PeerConnectClassDiagram
+
+!theme plain
+skinparam backgroundColor white
+skinparam classBackgroundColor lightyellow
+skinparam classBorderColor black
+skinparam classFontSize 11
+skinparam arrowFontSize 10
+skinparam nodesep 50
+skinparam ranksep 50
+skinparam linetype ortho
+
+title "CLASS DIAGRAM" 
+
+' Main App
+class MainApplication {
++ main()
++ showPanel()
+}
+
+' UI Panels
+class ProfileDashboard {
++ setUser()
++ updateStats()
++ saveProfile()
+}
+
+class LoginPanel {
++ handleLogin()
++ validateUser()
+}
+
+class ChecklistPanel {
++ loadItems()
++ addTask()
++ markComplete()
+}
+
+class PeerMatchingPanel {
++ findMatches()
++ showCompatibility()
+}
+
+class LeaderboardPanel {
++ loadRankings()
++ displayStats()
+}
+
+class AchievementsPanel {
++ checkProgress()
++ awardBadges()
+}
+
+' Managers
+class ProfileManager {
++ login()
++ createAccount()
++ updateProfile()
+}
+
+class PeerMatchingManager {
++ findPeerMatches()
++ analyzeCompatibility()
++ calculateScore()
+}
+
+class DatabaseManager {
+- URL
+- USER
+- PASSWORD
++ saveUser()
++ getUserByUsername()
++ getAllUsers()
++ connection
+}
+
+' Models
+class UserProfile {
+- username
+- email
+- major
+- studyStreak
+- experiencePoints
+- level
+}
+
+class ChecklistItem {
+- taskDescription
+- taskCreator
+- isCompleted
+}
+
+class PeerMatch {
+- matchedUser
+- compatibilityScore
+- matchReasons
+}
+
+' Relationships
+MainApplication --> ProfileManager : uses
+MainApplication --> ProfileDashboard : uses
+ProfileDashboard --> UserProfile : displays
+ProfileManager --> DatabaseManager : uses
+PeerMatchingManager --> DatabaseManager : uses
+ChecklistPanel --> DatabaseManager : uses
+DatabaseManager --> UserProfile : manages
+DatabaseManager --> ChecklistItem : stores
+PeerMatchingManager --> PeerMatch : creates
+ProfileDashboard --> LeaderboardPanel : opens
+ProfileDashboard --> AchievementsPanel : opens
+ChecklistPanel --> ChecklistItem : manages
+PeerMatchingPanel --> PeerMatchingManager : uses
+LoginPanel --> ProfileManager : authenticates
+
+@enduml
